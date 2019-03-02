@@ -159,6 +159,7 @@ def main(_):
       "cola": run_classifier.ColaProcessor,
       "mnli": run_classifier.MnliProcessor,
       "mrpc": run_classifier.MrpcProcessor,
+      "author": run_classifier.AuthorProcessor,
   }
 
   if not FLAGS.do_train and not FLAGS.do_eval:
