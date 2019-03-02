@@ -327,12 +327,12 @@ class AuthorProcessor(DataProcessor):
       if i == 0:
         continue
       guid = "%s-%s" % (set_type, i)
-      text_a = tokenization.convert_to_unicode(line[0])
+      text_a = tokenization.convert_to_unicode(line[1])
       text_b = None
       if set_type == "test":
         label = "Hassan_Nisar"
       else:
-        label = tokenization.convert_to_unicode(line[-1])
+        label = tokenization.convert_to_unicode(line[0])
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
