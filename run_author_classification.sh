@@ -6,8 +6,10 @@ TASK_NAME="author"
 OUTPUT_DIR="OUTPUT"
 
 python3 run_classifier_with_tfhub.py \
---data_dir=$DATASET_DIR\
+--data_dir=$DATASET_DIR \
 --task_name=$TASK_NAME \
 --bert_hub_module_handle=$BERT_MODEL_HUB \
---output_dir=$OUTPUT_DIR
+--output_dir=$OUTPUT_DIR \
+--do_train=True --do_eval=True
+
 
