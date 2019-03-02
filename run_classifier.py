@@ -25,6 +25,7 @@ import modeling
 import optimization
 import tokenization
 import tensorflow as tf
+import pandas as pd
 
 flags = tf.flags
 
@@ -203,6 +204,11 @@ class DataProcessor(object):
         lines.append(line)
       return lines
 
+  @classmethod
+  def _read_tsv_using_pd(cls, input_file, quotechar=None):
+    """Reads a tab separated value file."""
+    lines = pd.read_csv('dataset/train.tsv', sep='\t')
+    return lines.values
 
 class XnliProcessor(DataProcessor):
   """Processor for the XNLI data set."""
@@ -297,18 +303,18 @@ class AuthorProcessor(DataProcessor):
   def get_train_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-        self._read_tsv(os.path.join(data_dir, "train.tsv")), "train")
+        self._read_tsv_using_pd(os.path.join(data_dir, "train.tsv")), "train")
 
   def get_dev_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-        self._read_tsv(os.path.join(data_dir, "dev_matched.tsv")),
+        self._read_tsv_using_pd(os.path.join(data_dir, "dev_matched.tsv")),
         "dev_matched")
 
   def get_test_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-        self._read_tsv(os.path.join(data_dir, "test_matched.tsv")), "test")
+        self._read_tsv_using_pd(os.path.join(data_dir, "test_matched.tsv")), "test")
 
   def get_labels(self):
     """See base class."""
